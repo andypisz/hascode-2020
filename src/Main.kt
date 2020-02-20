@@ -39,7 +39,7 @@ fun runAlgorithm(listOfLines: List<String>): List<String> {
  */
 fun processFile(fileName: String) {
     val inputLines = readFile("in/$fileName")
-    writeFile(runAlgorithm(inputLines))
+    writeFile(runAlgorithm(inputLines), fileName)
 }
 
 /**
@@ -53,9 +53,9 @@ fun readFile(fileName: String): List<String> {
 /**
  * put the list of lines in a file
  */
-fun writeFile(listOfLines: List<String>) {
+fun writeFile(listOfLines: List<String>, fileName: String) {
     val content = buildFileContent(listOfLines)
-    File("out/output").writeText(content)
+    File("out/$fileName").writeText(content)
 }
 
 /**
