@@ -1,10 +1,10 @@
 import java.io.File
-import java.lang.Integer.min
+import java.lang.Double.min
 
 class Main {
 }
 fun main() {
-    val listOfFileNames = listOf("a_example.txt","b_read_on.txt","d_tough_choices.txt","e_so_many_books.txt","f_libraries_of_the_world.txt")
+    val listOfFileNames = listOf("a_example.txt","b_read_on.txt","c_incunabula.txt","d_tough_choices.txt","e_so_many_books.txt","f_libraries_of_the_world.txt")
     //val listOfFileNames = listOf("a_example.txt")
     for (fileName in listOfFileNames) {
         processFile(fileName)
@@ -149,17 +149,19 @@ fun generateSubmission(libraries: List<Library>, numberOfDays: Int): List<String
     var actualLibraryId = 0
     while (daySpent < numberOfDays && actualLibraryId < libraries.size) {
         daySpent += libraries[actualLibraryId].signupTime
-        scannedLibrary.add(libraries[actualLibraryId].id to getScanableBooksId(libraries[actualLibraryId], numberOfDays - daySpent))
+        scannedLibrary.add(libraries[actualLibraryId].id to getScanableBooksId(libraries[actualLibraryId], (numberOfDays - daySpent).toDouble()))
         actualLibraryId += 1
     }
     return writeSubmissionFile(scannedLibrary)
 }
 
-fun getScanableBooksId(actualLibrary: Library, dayRemaning: Int): List<Int> {
+fun getScanableBooksId(actualLibrary: Library, dayRemaning: Double): List<Int> {
     if (dayRemaning > 0){
+        //println("dayRemaning: $dayRemaning - actualLibrary.bookPerDay: ${actualLibrary.bookPerDay}")
+        //println("multiplication: ${dayRemaning*actualLibrary.bookPerDay}")
         return actualLibrary.listOfBooks.map{
             it.id
-        }.subList(0,min(dayRemaning*actualLibrary.bookPerDay, actualLibrary.listOfBooks.size) -1)
+        }.subList(0,(min(dayRemaning*actualLibrary.bookPerDay.toDouble(), actualLibrary.listOfBooks.size.toDouble()) -1).toInt())
     } else {
         return listOf()
     }
