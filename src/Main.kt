@@ -30,7 +30,7 @@ fun runAlgorithm(listOfLines: List<String>): List<String> {
     //write line with each result
     val result1 = writeLine(listOf(entry1, entry2, entry3))
     val result2 = writeLine(listOf(entry4, entry5, entry6))
-    
+
     return listOf(result1, result2)
 }
 
@@ -86,4 +86,15 @@ fun buildFileContent(listOfLines: List<String>): String {
         result += "$line\n"
     }
     return result
+}
+
+/**
+ * Calculate the scoring
+ */
+fun calculateScoring(listOfResults: List<String>): Int {
+    var res = 0
+    for (result in listOfResults) {
+        res += result.toInt()
+    }
+    return res
 }
