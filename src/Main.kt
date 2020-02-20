@@ -13,6 +13,7 @@ fun main() {
  * our algorithm, take the list of lines in entry, return the list of lines to write in the file
  */
 fun runAlgorithm(listOfLines: List<String>): List<String> {
+    println("test")
     //get each entry for each line
     val firstLine = listOfLines[0]
     val firstLineEntries = readLine(firstLine)

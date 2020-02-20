@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3bcdf0b5-545e-4380-860c-f4a4d4501467" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/output" beforeDir="false" afterPath="$PROJECT_DIR$/out/a_example.in" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/hashcode/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/hashcode/MainKt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.kt" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,21 +32,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunManager">
     <configuration name="MainKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
@@ -70,6 +55,18 @@
         <item itemvalue="Kotlin.MainKt" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -98,10 +95,11 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1360" y="-75" key="#Project_Structure" timestamp="1582192089800">
-      <screen x="-1920" y="-280" width="1920" height="1080" />
+    <state x="490" y="199" key="#Project_Structure" timestamp="1582219375312">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="-1360" y="-75" key="#Project_Structure/0.0.1280.800/-1920.-280.1920.1080@-1920.-280.1920.1080" timestamp="1582192089800" />
+    <state x="490" y="199" key="#Project_Structure/0.0.1680.1050@0.0.1680.1050" timestamp="1582219375312" />
     <state x="-1496" y="-78" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582193697028">
       <screen x="-1920" y="-280" width="1920" height="1080" />
     </state>
