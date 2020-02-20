@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3bcdf0b5-545e-4380-860c-f4a4d4501467" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/hashcode/META-INF/hashcode.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/hashcode/META-INF/hashcode.kotlin_module" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/hashcode/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/hashcode/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/hashcode/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/hashcode/MainKt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.kt" afterDir="false" />
-    </list>
+    <list default="true" id="3bcdf0b5-545e-4380-860c-f4a4d4501467" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
