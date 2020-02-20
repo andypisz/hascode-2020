@@ -5,6 +5,7 @@ class Main {
 }
 fun main() {
     val listOfFileNames = listOf("a_example.txt","b_read_on.txt","d_tough_choices.txt","e_so_many_books.txt","f_libraries_of_the_world.txt")
+    //val listOfFileNames = listOf("a_example.txt")
     for (fileName in listOfFileNames) {
         processFile(fileName)
     }
@@ -27,7 +28,7 @@ fun runAlgorithm(listOfLines: List<String>): List<String> {
     val listOfLibraries = mutableListOf<Library>()
     for (lineIndex in 2 until listOfLines.size step 2) {
         //println("$lineIndex / ${listOfLines.size}")
-        if(lineIndex < listOfLines.size - 2) {
+        if(lineIndex <= listOfLines.size - 2) {
             val firstLineEntries = readLine(listOfLines[lineIndex])
             val secondLineEntries = readLine(listOfLines[lineIndex+1])
             val listOfBooks = mutableListOf<Book>()
@@ -35,13 +36,24 @@ fun runAlgorithm(listOfLines: List<String>): List<String> {
                 val id = book.toInt()
                 listOfBooks.add(Book(id, booksScores[id].toInt()))
             }
-            listOfLibraries.add(Library(lineIndex-2, firstLineEntries[1].toInt(), firstLineEntries[2].toInt(), listOfBooks))
+            listOfLibraries.add(Library((lineIndex-2)/2, firstLineEntries[1].toInt(), firstLineEntries[2].toInt(), listOfBooks))
         }
     }
     /*println("got ${listOfLibraries.size} libraries: ")
     println("first one = ${listOfLibraries.first()}")
     println("last one = ${listOfLibraries.last()}")
-    println()*/
+    println()
+
+    listOfLibraries.forEach {
+        println("id: ${it.id}")
+        println("bookperday: ${it.bookPerDay}")
+        println("signupTime: ${it.signupTime}")
+        println("numberOfBooks: ${it.listOfBooks.size}")
+        it.listOfBooks.forEach {
+            println("id: ${it.id}")
+            println("score: ${it.score}")
+        }
+    }*/
 
     return generateSubmission(listOfLibraries, numberOfDays)
 }
@@ -155,10 +167,12 @@ fun getScanableBooksId(actualLibrary: Library, dayRemaning: Int): List<Int> {
 
 fun writeSubmissionFile(scannedLibrary: MutableList<Pair<Int, List<Int>>>): List<String> {
     val listofLines = mutableListOf<String>()
-    listofLines.add(scannedLibrary.size.toString())
+    listofLines.add(scannedLibrary.filter { it.second.isNotEmpty() }.size.toString())
     scannedLibrary.forEach {
-        listofLines.add(writeLine(listOf(it.first.toString(), it.second.size.toString())))
-        listofLines.add(writeLine(it.second.map { it.toString() }))
+        if (it.second.isNotEmpty()) {
+            listofLines.add(writeLine(listOf(it.first.toString(), it.second.size.toString())))
+            listofLines.add(writeLine(it.second.map { it.toString() }))
+        }
     }
     return listofLines
 }
