@@ -3,7 +3,7 @@ import java.io.File
 class Main {
 }
 fun main() {
-    val listOfFileNames = listOf("a_example.in")
+    val listOfFileNames = listOf("a_example.txt,b_read_on.txt,c_incunabula.txt,d_tough_choices.txt,e_so_many_books.txt,f_libraries_of_the_world.txt")
     for (fileName in listOfFileNames) {
         processFile(fileName)
     }
@@ -13,7 +13,6 @@ fun main() {
  * our algorithm, take the list of lines in entry, return the list of lines to write in the file
  */
 fun runAlgorithm(listOfLines: List<String>): List<String> {
-    println("test")
     //get each entry for each line
     val firstLine = listOfLines[0]
     val firstLineEntries = readLine(firstLine)
@@ -99,3 +98,15 @@ fun calculateScoring(listOfResults: List<String>): Int {
     }
     return res
 }
+
+class Book(
+    val id: String,
+    val score: Int
+)
+
+class Library(
+    val id: String,
+    val signupTime: Int,
+    val bookPerDay: Int,
+    val listOfBooks: List<Book>
+)
