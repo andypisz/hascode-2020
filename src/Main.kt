@@ -1,6 +1,7 @@
 import java.io.File
 
 fun getLinesOfFile(fileName: String): List<String> {
+    println("getting lines of file: $fileName")
     return File(fileName).readLines()
 }
 
@@ -11,6 +12,6 @@ fun writeFile(fileContent: String) {
 class Main {
 }
 fun main() {
-    println(getLinesOfFile("in/a_example.in"))
+    getLinesOfFile("in/a_example.in")
     writeFile("test")
 }
