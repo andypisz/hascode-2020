@@ -1,9 +1,10 @@
 import java.io.File
+import java.lang.Integer.min
 
 class Main {
 }
 fun main() {
-    val listOfFileNames = listOf("a_example.txt","b_read_on.txt","c_incunabula.txt","d_tough_choices.txt","e_so_many_books.txt","f_libraries_of_the_world.txt")
+    val listOfFileNames = listOf("a_example.txt","b_read_on.txt","d_tough_choices.txt","e_so_many_books.txt","f_libraries_of_the_world.txt")
     for (fileName in listOfFileNames) {
         processFile(fileName)
     }
@@ -13,25 +14,36 @@ fun main() {
  * our algorithm, take the list of lines in entry, return the list of lines to write in the file
  */
 fun runAlgorithm(listOfLines: List<String>): List<String> {
-    //get each entry for each line
-    val firstLine = listOfLines[0]
-    val firstLineEntries = readLine(firstLine)
-    val secondLine = listOfLines[1]
-    val secondLineEntries = readLine(secondLine)
+    val metaDataEntries = readLine(listOfLines[0])
 
-    //put it in a variable to use later
-    val entry1 = firstLineEntries[0]
-    val entry2 = firstLineEntries[1]
-    val entry3 = secondLineEntries[0]
-    val entry4 = secondLineEntries[1]
-    val entry5 = secondLineEntries[2]
-    val entry6 = secondLineEntries[3]
+    val numberOfBooks = metaDataEntries[0]
+    val numberOfLibraries = metaDataEntries[1]
+    val numberOfDays = metaDataEntries[2].toInt()
+    println("numberOfBooks: $numberOfBooks - numberOfLibraries: $numberOfLibraries - numberOfDays: $numberOfDays")
 
-    //write line with each result
-    val result1 = writeLine(listOf(entry1, entry2, entry3))
-    val result2 = writeLine(listOf(entry4, entry5, entry6))
+    val booksScores = readLine(listOfLines[1])
+    //println("booksScores: $booksScores")
 
-    return listOf(result1, result2)
+    val listOfLibraries = mutableListOf<Library>()
+    for (lineIndex in 2 until listOfLines.size step 2) {
+        //println("$lineIndex / ${listOfLines.size}")
+        if(lineIndex < listOfLines.size - 2) {
+            val firstLineEntries = readLine(listOfLines[lineIndex])
+            val secondLineEntries = readLine(listOfLines[lineIndex+1])
+            val listOfBooks = mutableListOf<Book>()
+            for (book in secondLineEntries) {
+                val id = book.toInt()
+                listOfBooks.add(Book(id, booksScores[id].toInt()))
+            }
+            listOfLibraries.add(Library(lineIndex-2, firstLineEntries[1].toInt(), firstLineEntries[2].toInt(), listOfBooks))
+        }
+    }
+    /*println("got ${listOfLibraries.size} libraries: ")
+    println("first one = ${listOfLibraries.first()}")
+    println("last one = ${listOfLibraries.last()}")
+    println()*/
+
+    return generateSubmission(listOfLibraries, numberOfDays)
 }
 
 /**
@@ -73,7 +85,9 @@ fun writeLine(listOfResults: List<String>): String {
     for (i in 0 until listOfResults.size - 1) {
         res += "${listOfResults[i]} "
     }
-    res += listOfResults.last()
+    if (listOfResults.isNotEmpty()) {
+        res += listOfResults.last()
+    }
     return res
 }
 
@@ -111,26 +125,29 @@ class Library(
     val listOfBooks: List<Book>
 )
 
-fun generateSubmission(libraries: List<Library>, numberOfDays: Int) {
+fun generateSubmission(libraries: List<Library>, numberOfDays: Int): List<String> {
     var daySpent = 0
 
     /**
      * List of visited libraries
      */
     var scannedLibrary = mutableListOf<Pair<Int,List<Int>>>()
+
+
     var actualLibraryId = 0
     while (daySpent < numberOfDays && actualLibraryId < libraries.size) {
         daySpent += libraries[actualLibraryId].signupTime
         scannedLibrary.add(libraries[actualLibraryId].id to getScanableBooksId(libraries[actualLibraryId], numberOfDays - daySpent))
+        actualLibraryId += 1
     }
-    writeSubmissionFile(scannedLibrary)
+    return writeSubmissionFile(scannedLibrary)
 }
 
 fun getScanableBooksId(actualLibrary: Library, dayRemaning: Int): List<Int> {
-    if (dayRemaning < 1){
+    if (dayRemaning > 0){
         return actualLibrary.listOfBooks.map{
             it.id
-        }.subList(0,dayRemaning*actualLibrary.bookPerDay-1)
+        }.subList(0,min(dayRemaning*actualLibrary.bookPerDay, actualLibrary.listOfBooks.size) -1)
     } else {
         return listOf()
     }
