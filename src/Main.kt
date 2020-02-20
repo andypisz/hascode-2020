@@ -162,3 +162,7 @@ fun writeSubmissionFile(scannedLibrary: MutableList<Pair<Int, List<Int>>>): List
     }
     return listofLines
 }
+
+fun sortLibraries(libraries: List<Library>): List<Library> {
+    return libraries.sortedBy { (it.listOfBooks.map { it.score }.sum() / it.signupTime) * it.bookPerDay }
+}
