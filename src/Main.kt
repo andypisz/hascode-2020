@@ -147,11 +147,13 @@ fun generateSubmission(libraries: List<Library>, numberOfDays: Int): List<String
      * List of visited libraries
      */
     var scannedLibrary = mutableListOf<Pair<Int,List<Int>>>()
+    var sortedLibrary = sortLibraries(libraries)
 
     var actualLibraryId = 0
     while (daySpent < numberOfDays && actualLibraryId < libraries.size) {
-        daySpent += libraries[actualLibraryId].signupTime
-        scannedLibrary.add(libraries[actualLibraryId].id to getScanableBooksId(libraries[actualLibraryId], (numberOfDays - daySpent).toDouble()))
+        var curentLib = sortedLibrary[actualLibraryId]
+        daySpent += curentLib.signupTime
+        scannedLibrary.add(curentLib.id to getScanableBooksId(curentLib, (numberOfDays - daySpent).toDouble()))
         actualLibraryId += 1
     }
     return writeSubmissionFile(scannedLibrary)
