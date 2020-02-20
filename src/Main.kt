@@ -1,6 +1,8 @@
 import java.io.File
 import java.lang.Double.min
 
+var listOfBooksAlreadyAdded = mutableListOf<Int>()
+
 class Main {
 }
 fun main() {
@@ -8,6 +10,7 @@ fun main() {
     //val listOfFileNames = listOf("a_example.txt")
     for (fileName in listOfFileNames) {
         processFile(fileName)
+        listOfBooksAlreadyAdded = mutableListOf()
     }
 }
 
@@ -145,7 +148,6 @@ fun generateSubmission(libraries: List<Library>, numberOfDays: Int): List<String
      */
     var scannedLibrary = mutableListOf<Pair<Int,List<Int>>>()
 
-
     var actualLibraryId = 0
     while (daySpent < numberOfDays && actualLibraryId < libraries.size) {
         daySpent += libraries[actualLibraryId].signupTime
@@ -159,9 +161,20 @@ fun getScanableBooksId(actualLibrary: Library, dayRemaning: Double): List<Int> {
     if (dayRemaning > 0){
         //println("dayRemaning: $dayRemaning - actualLibrary.bookPerDay: ${actualLibrary.bookPerDay}")
         //println("multiplication: ${dayRemaning*actualLibrary.bookPerDay}")
-        return actualLibrary.listOfBooks.map{
+        val listToCheck = actualLibrary.listOfBooks.filter {  newBook ->
+            listOfBooksAlreadyAdded.none {
+                it == newBook.id
+            }
+        }.sortedByDescending { it.score }.map{
             it.id
-        }.subList(0,(min(dayRemaning*actualLibrary.bookPerDay.toDouble(), actualLibrary.listOfBooks.size.toDouble()) -1).toInt())
+        }
+        return if (listToCheck.isNotEmpty()) {
+            val listOfBooksIdToAdd = listToCheck.subList(0,(min(dayRemaning*actualLibrary.bookPerDay.toDouble(), listToCheck.size.toDouble()) -1).toInt())
+            listOfBooksAlreadyAdded.addAll(listOfBooksIdToAdd)
+            listOfBooksIdToAdd
+        } else {
+            listOf()
+        }
     } else {
         return listOf()
     }
