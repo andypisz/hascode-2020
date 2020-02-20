@@ -6,6 +6,7 @@ fun getLinesOfFile(fileName: String): List<String> {
 }
 
 fun writeFile(fileContent: String) {
+    println("coucou")
     File("out/output").writeText(fileContent)
 }
 
