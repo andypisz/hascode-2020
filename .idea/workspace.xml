@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3bcdf0b5-545e-4380-860c-f4a4d4501467" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/in/a_example.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/in/b_read_on.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/in/c_incunabula.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/in/d_tough_choices.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/in/e_so_many_books.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/in/f_libraries_of_the_world.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/in/a_example.in" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/a_example.in" beforeDir="false" afterPath="$PROJECT_DIR$/out/a_example.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +41,18 @@
       <recent name="$PROJECT_DIR$/in" />
     </key>
   </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
   <component name="RunManager">
     <configuration name="MainKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
       <module name="hashcode" />
@@ -66,18 +72,6 @@
         <item itemvalue="Kotlin.MainKt" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />

@@ -100,13 +100,48 @@ fun calculateScoring(listOfResults: List<String>): Int {
 }
 
 class Book(
-    val id: String,
+    val id: Int,
     val score: Int
 )
 
 class Library(
-    val id: String,
+    val id: Int,
     val signupTime: Int,
     val bookPerDay: Int,
     val listOfBooks: List<Book>
 )
+
+fun generateSubmission(libraries: List<Library>, numberOfDays: Int) {
+    var daySpent = 0
+
+    /**
+     * List of visited libraries
+     */
+    var scannedLibrary = mutableListOf<Pair<Int,List<Int>>>()
+    var actualLibraryId = 0
+    while (daySpent < numberOfDays && actualLibraryId < libraries.size) {
+        daySpent += libraries[actualLibraryId].signupTime
+        scannedLibrary.add(libraries[actualLibraryId].id to getScanableBooksId(libraries[actualLibraryId], numberOfDays - daySpent))
+    }
+    writeSubmissionFile(scannedLibrary)
+}
+
+fun getScanableBooksId(actualLibrary: Library, dayRemaning: Int): List<Int> {
+    if (dayRemaning < 1){
+        return actualLibrary.listOfBooks.map{
+            it.id
+        }.subList(0,dayRemaning*actualLibrary.bookPerDay-1)
+    } else {
+        return listOf()
+    }
+}
+
+fun writeSubmissionFile(scannedLibrary: MutableList<Pair<Int, List<Int>>>): List<String> {
+    val listofLines = mutableListOf<String>()
+    listofLines.add(scannedLibrary.size.toString())
+    scannedLibrary.forEach {
+        listofLines.add(writeLine(listOf(it.first.toString(), it.second.size.toString())))
+        listofLines.add(writeLine(it.second.map { it.toString() }))
+    }
+    return listofLines
+}
