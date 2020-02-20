@@ -13,23 +13,39 @@ fun main() {
  * our algorithm, take the list of lines in entry, return the list of lines to write in the file
  */
 fun runAlgorithm(listOfLines: List<String>): List<String> {
-    //get each entry for each line
-    val firstLine = listOfLines[0]
-    val firstLineEntries = readLine(firstLine)
-    val secondLine = listOfLines[1]
-    val secondLineEntries = readLine(secondLine)
+    val metaDataEntries = readLine(listOfLines[0])
 
-    //put it in a variable to use later
-    val entry1 = firstLineEntries[0]
-    val entry2 = firstLineEntries[1]
-    val entry3 = secondLineEntries[0]
-    val entry4 = secondLineEntries[1]
-    val entry5 = secondLineEntries[2]
-    val entry6 = secondLineEntries[3]
+    val numberOfBooks = metaDataEntries[0]
+    val numberOfLibraries = metaDataEntries[1]
+    val numberOfDays = metaDataEntries[2]
+    //println("1: $numberOfBooks - 2: $numberOfLibraries - 3: $numberOfDays")
+
+    val booksScores = readLine(listOfLines[1])
+    //println("booksScores: $booksScores")
+
+    val listOfLibraries = mutableListOf<Library>()
+    for (lineIndex in 2 until listOfLines.size step 2) {
+        //println("$lineIndex / ${listOfLines.size}")
+        if(lineIndex < listOfLines.size - 2) {
+            val firstLineEntries = readLine(listOfLines[lineIndex])
+            val secondLineEntries = readLine(listOfLines[lineIndex+1])
+            val listOfBooks = mutableListOf<Book>()
+            for (book in secondLineEntries) {
+                val id = book.toInt()
+                listOfBooks.add(Book(id, booksScores[id].toInt()))
+            }
+            listOfLibraries.add(Library(lineIndex-2, firstLineEntries[1].toInt(), firstLineEntries[2].toInt(), listOfBooks))
+        }
+    }
+    /*println("got ${listOfLibraries.size} libraries: ")
+    println("first one = ${listOfLibraries.first()}")
+    println("last one = ${listOfLibraries.last()}")
+    println()*/
+
 
     //write line with each result
-    val result1 = writeLine(listOf(entry1, entry2, entry3))
-    val result2 = writeLine(listOf(entry4, entry5, entry6))
+    val result1 = writeLine(listOf())
+    val result2 = writeLine(listOf())
 
     return listOf(result1, result2)
 }
@@ -73,7 +89,9 @@ fun writeLine(listOfResults: List<String>): String {
     for (i in 0 until listOfResults.size - 1) {
         res += "${listOfResults[i]} "
     }
-    res += listOfResults.last()
+    if (listOfResults.isNotEmpty()) {
+        res += listOfResults.last()
+    }
     return res
 }
 
@@ -100,12 +118,12 @@ fun calculateScoring(listOfResults: List<String>): Int {
 }
 
 class Book(
-    val id: String,
+    val id: Int,
     val score: Int
 )
 
 class Library(
-    val id: String,
+    val id: Int,
     val signupTime: Int,
     val bookPerDay: Int,
     val listOfBooks: List<Book>
